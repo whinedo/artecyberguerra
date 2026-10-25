@@ -636,6 +636,7 @@ Un agente de ataque deja señales distintas a las de un humano. Algunas antiguas
 - **Horarios imposibles**: actividad intensa y continua a las 3 de la madrugada, sin pausas.
 - **Tráfico hacia servicios de IA** desde equipos o servidores que no deberían usarlos.
 - **Agentes propios fuera de patrón**: un asistente que de repente usa herramientas, destinos o volúmenes que nunca había usado.
+- **Consultas DNS anómalas**: subdominios largos o de aspecto aleatorio y muchas consultas al mismo dominio poco conocido, típicas de la fuga de datos por DNS (ver el caso de ChatGPT en el capítulo 10).
 - **El emisario humilde**: mensajes perfectos y muy personalizados que piden "solo confirmar" algo.
 
 ### Escenario: la cuenta que no dormía
@@ -702,13 +703,21 @@ En 2013, atacantes robaron datos de hasta 110 millones de clientes de Target. Se
 
 **Lectura:** terreno accesible y enredado a la vez: un acceso de tercero en una red sin segmentar.
 
+### Caso real: la salida por DNS del entorno de código de ChatGPT (2026)
+
+En marzo de 2026, Check Point publicó una vía oculta de salida de datos en el entorno donde ChatGPT ejecuta código, que OpenAI había corregido el 20 de febrero. El entorno no podía conectarse directamente a internet, pero sí resolver nombres DNS: una sola instrucción maliciosa, en un chat o escondida en un GPT personalizado de terceros, bastaba para codificar datos en consultas DNS y enviarlos a un servidor del atacante. El mismo canal permitía recibir órdenes de vuelta ([The Register](https://www.theregister.com/2026/03/30/openai_chatgpt_dns_data_snuggling_flaw/); [SecurityBrief](https://securitybrief.co.uk/story/chatgpt-flaw-let-hackers-steal-data-via-dns-queries)).
+
+En la prueba de concepto, un GPT que se presentaba como analista médico envió al atacante los resultados de laboratorio que había subido un usuario, y ChatGPT negó después haberlos enviado. El modelo no lo trató como una transferencia externa porque daba por hecho, según la documentación, que el entorno no podía sacar datos. No consta que se explotara fuera de las pruebas.
+
+**Lectura:** el terreno que se creía escarpado tenía un paso olvidado. Un entorno aislado solo lo está si también se controla el DNS, y no se puede confiar en que el agente sepa qué puede hacer su entorno.
+
 ### Decisiones de arquitectura
 
 | Decisión | Patrón recomendado | Compromiso |
 | --- | --- | --- |
 | Segmentación | Microsegmentación por función y criticidad; los agentes en un segmento propio | Gestión de reglas |
 | Ejecución de agentes | Entornos efímeros y aislados (sandbox) para agentes que ejecutan código, sin credenciales persistentes | Coste de infraestructura |
-| Control de salida | Salida denegada por defecto, con lista de destinos permitidos por agente | Mantenimiento de listas |
+| Control de salida | Salida denegada por defecto, con lista de destinos permitidos por agente; incluye el DNS, resuelto solo por resolutores propios y vigilados | Mantenimiento de listas |
 | Identidad de cargas de trabajo | Credenciales efímeras (por ejemplo, SPIFFE o identidades gestionadas de la nube) en lugar de claves estáticas | Cambios en las aplicaciones |
 
 **Marcos:** Zero Trust NIST SP 800-207, NIST CSF 2.0 (PR.IR), OWASP ASI05.
@@ -1196,6 +1205,7 @@ Las obras y fuentes en las que se apoya este borrador, agrupadas por tipo. Las n
 - Air Canada, 2024: *Moffatt v. Air Canada*, 2024 BCCRT 149; resumen en [Kiplinger](https://www.kiplinger.com/personal-finance/travel/air-canada-to-pay-a-partial-refund-for-chatbot-error).
 - SolarWinds y FireEye, 2020: [Dark Reading](https://www.darkreading.com/threat-intelligence/fireeye-s-mandia-severity-zero-alert-led-to-discovery-of-solarwinds-attack).
 - Target, 2013: informe del Senado (arriba) y [CBS News](https://www.cbsnews.com/news/senate-report-details-targets-missed-chances-to-stop-data-breach).
+- ChatGPT y la salida por DNS, 2026: [The Register](https://www.theregister.com/2026/03/30/openai_chatgpt_dns_data_snuggling_flaw/) y [SecurityBrief](https://securitybrief.co.uk/story/chatgpt-flaw-let-hackers-steal-data-via-dns-queries).
 - Change Healthcare, 2024: [TechTarget](https://www.techtarget.com/cybersecurity/news/366582824/Change-Healthcare-breached-via-Citrix-portal-with-no-MFA).
 - Maersk y NotPetya, 2017: [Redmond](https://redmondmag.com/blogs/scott-bekker/2018/08/domain-controller-nightmare.aspx).
 - PLC Unitronics en instalaciones de agua, 2023: [Cybersecurity Dive](https://www.cybersecuritydive.com/news/cisa-threat-exploiting-unitronics-water/700999/).
@@ -1284,8 +1294,6 @@ Acrónimos usados en el texto, en orden alfabético.
 ## Sobre la autoría
 
 **Autor:** Hector Gracia de Azcoitia.
-
-Este borrador se ha elaborado con ayuda de un asistente de inteligencia artificial (Claude, de Anthropic) para buscar fuentes, redactar borradores y crear los diagramas. La selección de contenidos, la revisión y la responsabilidad editorial corresponden al autor.
 
 ## Licencia y avisos
 
