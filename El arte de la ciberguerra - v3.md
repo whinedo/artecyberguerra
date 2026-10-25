@@ -1283,20 +1283,20 @@ Acrónimos usados en el texto, en orden alfabético.
 
 ## Sobre la autoría
 
-Autoría: @whinedo.
+**Autor:** Hector Gracia de Azcoitia.
 
-Este borrador se ha elaborado con ayuda de un asistente de inteligencia artificial (Claude, de Anthropic) para buscar fuentes, redactar borradores y crear los diagramas. La selección de contenidos, la revisión y la responsabilidad editorial corresponden a la persona autora.
+Este borrador se ha elaborado con ayuda de un asistente de inteligencia artificial (Claude, de Anthropic) para buscar fuentes, redactar borradores y crear los diagramas. La selección de contenidos, la revisión y la responsabilidad editorial corresponden al autor.
 
 ## Licencia y avisos
 
 ### Licencia
 
-© 2026 @whinedo. Este documento se distribuye bajo la licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es)). Puedes copiarlo, redistribuirlo y adaptarlo para cualquier fin, también comercial, con dos condiciones:
+© 2026 Hector Gracia de Azcoitia. Este documento se distribuye bajo la licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es)). Puedes copiarlo, redistribuirlo y adaptarlo para cualquier fin, también comercial, con dos condiciones:
 
 - **Atribución:** reconocer la autoría, enlazar la licencia e indicar si has hecho cambios.
 - **Compartir igual:** distribuir tus adaptaciones con esta misma licencia.
 
-Atribución sugerida: «El arte de la ciberguerra», de @whinedo, licencia CC BY-SA 4.0.
+Atribución sugerida: «El arte de la ciberguerra», de Hector Gracia de Azcoitia, licencia CC BY-SA 4.0.
 
 ### Contenido de terceros
 
@@ -1308,4 +1308,4 @@ Atribución sugerida: «El arte de la ciberguerra», de @whinedo, licencia CC BY
 
 ### Aviso de responsabilidad
 
-Este borrador tiene fines formativos y divulgativos. Su contenido es orientativo, puede contener errores y no sustituye una evaluación profesional de riesgos ni el asesoramiento legal. Las amenazas, normas y productos citados cambian con rapidez, así que conviene verificar su estado antes de aplicar cualquier recomendación. La persona autora no se responsabiliza de las decisiones tomadas a partir de este documento. Las referencias a técnicas de ataque se incluyen solo con fines defensivos.
+Este borrador tiene fines formativos y divulgativos. Su contenido es orientativo, puede contener errores y no sustituye una evaluación profesional de riesgos ni el asesoramiento legal. Las amenazas, normas y productos citados cambian con rapidez, así que conviene verificar su estado antes de aplicar cualquier recomendación. El autor no se responsabiliza de las decisiones tomadas a partir de este documento. Las referencias a técnicas de ataque se incluyen solo con fines defensivos.
