@@ -2,7 +2,7 @@
 
 *Sun Tzu adaptado a la defensa frente a agentes de ataque con IA — borrador preliminar, versión 3*
 
-25 de octubre de 2026
+25 de octubre de 2026 · Hector Gracia de Azcoitia
 
 **Novedades de la versión 3:** cita breve del texto original al inicio de cada capítulo, un caso real documentado por capítulo, Anexo C de bibliografía y Anexo D con el glosario de acrónimos. La versión 2 añadió los diagramas de estado de los capítulos 2, 8 y 11 y el Anexo B sobre infraestructuras críticas.
 
