@@ -844,7 +844,7 @@ Conviene conocer los límites de este documento antes de usarlo:
 - **El campo cambia muy rápido.** Las capacidades de los agentes de IA, la normativa (como el Reglamento de IA o la transposición de NIS2) y los productos citados pueden haber cambiado desde octubre de 2026.
 - **El enfoque es defensivo y de arquitectura.** No cubre pruebas ofensivas con IA, la implementación detallada de cada control ni un modelo de madurez con métricas.
 - **El marco legal de referencia es el de España y la UE.** Otros países pueden imponer obligaciones distintas.
-- **No ha tenido revisión externa formal.** Las correcciones y sugerencias son bienvenidas en el repositorio del documento: [github.com/whinedo/artecyberguerra](https://github.com/whinedo/artecyberguerra).
+- **Las correcciones y sugerencias son bienvenidas.** Puedes enviarlas en el repositorio del documento: [github.com/whinedo/artecyberguerra](https://github.com/whinedo/artecyberguerra).
 
 ## Anexo A. Correspondencias y ejercicios
 
