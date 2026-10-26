@@ -2,7 +2,7 @@
 
 *Sun Tzu adaptado a la defensa frente a agentes de ataque con IA*
 
-Versión 1.0 · octubre de 2026 · Hector Gracia de Azcoitia
+Versión 1.0 · octubre de 2026 · Héctor Gracia de Azcoitia
 
 **Licencia:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es). Detalles, contenido de terceros y aviso de responsabilidad en la sección «Licencia y avisos», al final del documento.
 
@@ -1119,7 +1119,7 @@ Acrónimos usados en el texto, en orden alfabético.
 
 ## Sobre la autoría
 
-**Autor:** Hector Gracia de Azcoitia.
+**Autor:** Héctor Gracia de Azcoitia.
 
 ## Agradecimientos
 
@@ -1129,12 +1129,12 @@ Gracias a Enrique Martín García y a Ignacio López Visedo por sus consejos y p
 
 ### Licencia
 
-© 2026 Hector Gracia de Azcoitia. Este documento se distribuye bajo la licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es)). Puedes copiarlo, redistribuirlo y adaptarlo para cualquier fin, también comercial, con dos condiciones:
+© 2026 Héctor Gracia de Azcoitia. Este documento se distribuye bajo la licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es)). Puedes copiarlo, redistribuirlo y adaptarlo para cualquier fin, también comercial, con dos condiciones:
 
 - **Atribución:** reconocer la autoría, enlazar la licencia e indicar si has hecho cambios.
 - **Compartir igual:** distribuir tus adaptaciones con esta misma licencia.
 
-Atribución sugerida: «El arte de la ciberguerra», de Hector Gracia de Azcoitia, licencia CC BY-SA 4.0.
+Atribución sugerida: «El arte de la ciberguerra», de Héctor Gracia de Azcoitia, licencia CC BY-SA 4.0.
 
 ### Contenido de terceros
 
