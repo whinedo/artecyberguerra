@@ -172,7 +172,23 @@ El informe global de amenazas de CrowdStrike publicado en marzo de 2026 sitúa e
 
 ### Diagrama de estados: contención de una cuenta
 
-&#91;embedded content: diagrama de estados · una cuenta ante un posible agente atacante\]
+**La máquina suspende; solo una persona devuelve el acceso**
+
+```mermaid
+flowchart LR
+    N(["Normal<br/>acceso habitual"]) -->|anomalía| S(["Sospechosa<br/>vigilancia reforzada"])
+    S -->|falso positivo| N
+    S -->|ritmo y alcance| X(["Suspendida<br/>sesiones revocadas"])
+    X -->|aviso al analista de guardia| R(["Revisión humana<br/>decide un analista"])
+    R -->|sin compromiso| H(["Rehabilitada<br/>acceso devuelto"])
+    H -->|credenciales rotadas| N
+    R -->|compromiso confirmado| F(["Forense<br/>respuesta a incidentes"])
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class N inicio
+    class X clave
+```
 
 La automatización solo hace el paso reversible: suspender y revocar sesiones. Devolver el acceso o abrir una investigación forense lo decide siempre un analista.
 
@@ -359,7 +375,25 @@ La "energía del conjunto" es la correlación. Un agente fragmenta su ataque en 
 
 ### Diagrama: las dos fuerzas y la energía del conjunto
 
-&#91;embedded content: fuerza directa, fuerza indirecta y energía del conjunto\]
+**La energía del conjunto ve lo que cada fuerza por separado no ve**
+
+```mermaid
+flowchart LR
+    AR["Ataque ruidoso<br/>(fuerza directa, zheng)<br/>phishing masivo,<br/>denegación de servicio"]
+    IS["Intrusión silenciosa<br/>(fuerza indirecta, qi)<br/>cuenta de contratista,<br/>regla de reenvío, API"]
+    DV["Defensa visible<br/>cortafuegos, filtros,<br/>IA de clasificación"]
+    DO["Defensa oculta<br/>señuelos, UEBA,<br/>caza de amenazas"]
+    E["Energía del conjunto<br/>SIEM e IA de triaje:<br/>un único incidente<br/>con la historia completa"]
+    AR -->|choca con| DV
+    IS -->|la delata| DO
+    AR -.->|distrae y cubre| IS
+    DV -->|eventos| E
+    DO -->|eventos| E
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class AR,IS alerta
+    class E clave
+```
 
 Cada columna, por separado, ve solo una parte: la defensa visible frena el ataque ruidoso, y la defensa oculta capta señales sueltas de la intrusión silenciosa. La vista de pájaro une los eventos de ambas y descubre que el ataque ruidoso estaba distrayendo al equipo mientras se producía la intrusión.
 
@@ -530,7 +564,22 @@ En febrero de 2024, el Tribunal de Resolución Civil de la Columbia Británica c
 
 ### Diagrama de estados: un agente propio bajo control
 
-&#91;embedded content: diagrama de estados · ciclo de vida operativo de un agente propio\]
+**Los límites frenan al agente; el kill switch lo detiene**
+
+```mermaid
+flowchart LR
+    A(["Activo<br/>dentro de sus límites"]) -->|límite alcanzado| L(["Limitado<br/>acciones en cola"])
+    L -->|aprobado| A
+    A -->|kill switch| P(["Pausado<br/>sin herramientas"])
+    P -->|causa resuelta| A
+    L -->|conducta anómala| P
+    P -->|manipulación confirmada| R(["Retirado<br/>trazas conservadas"])
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class A inicio
+    class P clave
+```
 
 Al alcanzar un límite, el agente no se detiene: deja sus acciones en cola hasta que una persona las aprueba. El kill switch o una conducta anómala lo pausan sin herramientas ni claves, y si se confirma la manipulación se retira conservando sus trazas.
 
@@ -699,7 +748,26 @@ El 12 de febrero de 2024, atacantes entraron en Change Healthcare con credencial
 
 ### Diagrama de estados: las seis situaciones
 
-&#91;embedded content: diagrama de estados · las seis situaciones de un incidente y quién decide\]
+**Hasta la fase 3 responde la automatización; desde la 4 decide una persona**
+
+```mermaid
+flowchart TB
+    subgraph AUTO["Automatización preaprobada (minutos)"]
+        direction LR
+        P1(["1. Frontera<br/>filtrar y verificar"]) --> P2(["2. Cabeza de puente<br/>suspender la cuenta"]) --> P3(["3. Terreno disputado<br/>aislar el segmento"])
+    end
+    subgraph HUM["Decisión humana (comité de crisis)"]
+        direction RL
+        P4(["4. Terreno profundo<br/>rotar credenciales"]) --> P5(["5. Terreno de muerte<br/>desconectar y recuperar"])
+        P6(["6. Traición interna<br/>agente propio comprometido"]) -->|se gestiona como terreno profundo| P4
+    end
+    P3 -->|escala| P4
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class P1 inicio
+    class AUTO clave
+```
 
 Las tres primeras fases son reversibles y rápidas, por eso se automatizan. A partir de la cuarta, las acciones afectan a toda la organización y decide el comité de crisis. Un agente propio comprometido entra directamente en ese nivel.
 
@@ -830,7 +898,34 @@ En 1986, Clifford Stoll investigaba un descuadre de 75 centavos en la contabilid
 
 Los patrones de los capítulos 4, 8, 9 y 10 se combinan en una sola vista: separar lectura de acción, aplicar política en un único punto y supervisar todas las capas.
 
-&#91;embedded content: arquitectura de referencia · agente propio con controles por capas\]
+**Toda acción del agente pasa por la pasarela de política**
+
+```mermaid
+flowchart TB
+    U["Usuarios internos<br/>peticiones con SSO y MFA"] --> FI["Filtro de entrada<br/>sanea, elimina texto oculto y etiqueta el origen de cada dato"]
+    C["Contenido externo<br/>correo, web, docs: no confiable"] --> FI
+    subgraph AG["Agente propio"]
+        LE["Componente lector<br/>estructura el contenido<br/>sin herramientas sensibles"] --> EJ["Componente ejecutor<br/>recibe solo datos validados<br/>herramientas acotadas"]
+    end
+    FI --> LE
+    EJ --> PEP["Pasarela de herramientas (PEP)<br/>valida destino, volumen y tipo de dato<br/>y registra cada llamada"]
+    PEP --> AH["Aprobación humana<br/>acciones irreversibles"]
+    PEP --> ERP["ERP<br/>sistema de registro"]
+    PEP --> CO["Correo<br/>envíos limitados"]
+    PEP --> KB["Conocimiento<br/>versionado"]
+    subgraph SUP["Supervisión transversal"]
+        CAT["Catálogo de agentes<br/>dueño y permisos"]
+        TEL["Trazas, SIEM y UEBA<br/>conducta por agente"]
+        KS["Kill switch<br/>por agente y global"]
+    end
+    SUP -.-> AG
+    SUP -.-> PEP
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class C alerta
+    class PEP clave
+```
 
 El contenido externo nunca llega a un componente con herramientas: lo procesa un lector sin permisos sensibles. Toda acción del ejecutor pasa por la pasarela de política, que deriva lo irreversible a aprobación humana. La supervisión (catálogo, trazas y kill switch) observa al agente y a la pasarela.
 
@@ -923,7 +1018,31 @@ Los casos de este anexo no usan a Grupo Meridiano, sino operadores ficticios de 
 
 El terreno de Sun Tzu se diseña por niveles: cuanto más cerca del proceso físico, menos conexiones y más control en cada paso.
 
-&#91;embedded content: arquitectura de referencia OT · modelo Purdue, zonas y conductos\]
+**El proceso físico solo se alcanza atravesando conductos controlados**
+
+```mermaid
+flowchart TB
+    L45["Niveles 4-5 · Red corporativa (TI)<br/>ERP, correo, agentes de IA (sin escritura en OT)"]
+    L35["Nivel 3.5 · DMZ industrial<br/>réplica del historiador (solo lectura)<br/>bastión de acceso remoto con MFA y grabación"]
+    L3["Nivel 3 · Operaciones de planta<br/>SCADA, historiador, estaciones de ingeniería"]
+    L2["Nivel 2 · Supervisión<br/>HMI de planta"]
+    L1["Nivel 1 · Control<br/>PLC y RTU"]
+    L0["Nivel 0 · Proceso físico<br/>bombas, válvulas, dosificación, interruptores"]
+    L45 <-->|"Cortafuegos IT/OT: solo flujos aprobados"| L35
+    L35 <-->|"Cortafuegos de planta y pasarela unidireccional"| L3
+    L3 <-->|"Segmentación por zonas y conductos (IEC 62443)"| L2
+    L2 <--> L1
+    L1 <--> L0
+    TP["Terceros<br/>integradores y fabricantes"] --> L35
+    SEN["Sensor pasivo OT<br/>copia del tráfico de los niveles 1 a 3,<br/>sin escaneo activo"] -.-> L3
+    SEN -.-> L2
+    SEN -.-> L1
+    SIS["SIS independiente<br/>parada segura"] --> L0
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class L35 clave
+```
 
 Nada de TI ni de terceros llega a planta sin pasar por la DMZ industrial. El sensor pasivo vigila sin tocar los equipos, y el sistema instrumentado de seguridad (SIS) puede llevar el proceso a parada segura aunque todo el control digital esté comprometido.
 
@@ -961,7 +1080,25 @@ La lección vale para todos los sectores: un agente de un tercero dentro de tu O
 
 Las nueve situaciones de Sun Tzu se traducen en planta como modos de operación, cada uno con su criterio de entrada y de salida.
 
-&#91;embedded content: diagrama de estados · modos de operación de una planta durante un incidente\]
+**Aislar OT permite seguir operando; volver exige verificar la lógica**
+
+```mermaid
+flowchart LR
+    N(["Normal<br/>control automático"]) -->|anomalía| AL(["Alerta<br/>se investiga"])
+    AL -->|falsa alarma| N
+    AL -->|compromiso confirmado| ISO(["OT aislada<br/>planta en automático"])
+    ISO -->|control digital dudoso| MAN(["Operación manual<br/>mando local en planta"])
+    MAN -->|condición insegura| STOP(["Parada segura<br/>actúa el SIS"])
+    ISO -->|incidente resuelto| RES(["Restauración<br/>vuelta gradual"])
+    MAN -->|incidente resuelto| RES
+    STOP -->|incidente resuelto| RES
+    RES -->|lógica verificada con copia maestra| N
+    classDef inicio fill:#e5f4e4,stroke:#2e7d32,stroke-width:2px,color:#111
+    classDef clave fill:#e7f1fb,stroke:#1565c0,stroke-width:2px,color:#111
+    classDef alerta fill:#f9eeda,stroke:#b26a00,stroke-width:2px,color:#111
+    class N inicio
+    class ISO clave
+```
 
 Cortar el conducto IT/OT es la decisión que más daño evita. Si se duda del control digital, se pasa a mando local; si hay una condición insegura, actúa el SIS. Desde cualquier modo, la vuelta a la normalidad pasa por comparar la lógica con su copia maestra.
 

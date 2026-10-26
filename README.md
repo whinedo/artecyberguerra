@@ -11,7 +11,7 @@ Versión 1.0 · octubre de 2026 · Héctor Gracia de Azcoitia
 - **PDF:** [El arte de la ciberguerra v1.0.pdf](El%20arte%20de%20la%20ciberguerra%20v1.0.pdf)
 - **Markdown:** [El arte de la ciberguerra v1.0.md](El%20arte%20de%20la%20ciberguerra%20v1.0.md)
 
-Recomendamos leer el PDF: incluye los diagramas de estado y las arquitecturas de referencia, que en la versión Markdown aparecen como texto de sustitución.
+En la versión Markdown, los diagramas están en formato Mermaid: GitHub y Obsidian los muestran como gráficos sin necesidad de plugins.
 
 ## De qué trata
 
